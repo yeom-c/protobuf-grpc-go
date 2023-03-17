@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package battle;
+
+option go_package = "github.com/yeom-c/protobuf-grpc-go/gen/golang/protos/battle";
+option csharp_namespace = "GrpcBattle";
+
+service BattleService {
+  rpc ConnectStream(stream StreamReq) returns (stream StreamRes) {}
+}
+
+message Message {
+  string action = 1;
+  string data = 2;
+}
+
+message StreamReq {
+  bool broadcast_all = 1;
+  repeated Message message = 2;
+}
+
+message StreamRes {
+  repeated Message message = 1;
+  double battle_second = 2;
+}

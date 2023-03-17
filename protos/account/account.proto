@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package account;
+
+import "protos/model/model.proto";
+
+option go_package = "github.com/yeom-c/protobuf-grpc-go/gen/golang/protos/account";
+option csharp_namespace = "GrpcAccount";
+
+service AccountService {
+  rpc SignIn(SignInReq) returns (SignInRes) {}
+  rpc SignUp(SignUpReq) returns (SignInRes) {}
+}
+
+message SignInReq {
+  string uuid = 1;
+}
+
+message SignInRes {
+  model.SessionData session = 1;
+}
+
+message SignUpReq {
+  string uuid = 1;
+  string nickname = 2;
+  int32 profile_idx = 3;
+  int32 world_id = 4;
+}

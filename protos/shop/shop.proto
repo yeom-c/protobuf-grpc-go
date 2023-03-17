@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package shop;
+
+import "protos/model/model.proto";
+
+option go_package = "github.com/yeom-c/protobuf-grpc-go/gen/golang/protos/shop";
+option csharp_namespace = "GrpcShop";
+
+service ShopService {
+  rpc GetShop(GetShopReq) returns (GetShopRes) {}
+  rpc GetShopGoods(GetShopGoodsReq) returns (GetShopGoodsRes) {}
+  rpc BuyShopGoods(BuyShopGoodsReq) returns (BuyShopGoodsRes) {}
+}
+
+message GetShopReq {
+  int32 shop_type = 1;
+}
+
+message GetShopRes {
+  model.ShopData shop = 1;
+  repeated model.ShopCategoryData category_list = 2;
+}
+
+message GetShopGoodsReq {
+  repeated int32 category_id_list = 1;
+}
+
+message GetShopGoodsRes {
+  string user_shop_info = 1;
+  repeated model.ShopGoodsData goods_list = 2;
+}
+
+message BuyShopGoodsReq {
+  int32 id = 1;
+  string enum_id = 2;
+}
+
+message BuyShopGoodsRes {
+  model.Reward reward = 1;
+}

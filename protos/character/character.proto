@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package character;
+
+import "protos/model/model.proto";
+
+option go_package = "github.com/yeom-c/protobuf-grpc-go/gen/golang/protos/character";
+option csharp_namespace = "GrpcCharacter";
+
+service CharacterService {
+  rpc GetCharacters(model.Empty) returns (GetCharactersRes) {}
+  rpc LevelUpSignatureWeapon(LevelUpSignatureWeaponReq) returns (model.Result) {}
+  rpc ExtinctCharacter(ExtinctCharacterReq) returns (ExtinctCharacterRes) {}
+}
+
+message GetCharactersRes {
+  repeated model.CharacterData characters = 1;
+}
+
+message LevelUpSignatureWeaponReq {
+  int32 target_character_id = 1;
+  repeated int32 material_characters_id = 2;
+}
+
+message ExtinctCharacterReq {
+  repeated int32 characters_id = 1;
+}
+
+message ExtinctCharacterRes {
+  model.Reward reward = 1;
+}

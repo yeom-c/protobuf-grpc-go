@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package costume;
+
+import "protos/model/model.proto";
+
+option go_package = "github.com/yeom-c/protobuf-grpc-go/gen/golang/protos/costume";
+option csharp_namespace = "GrpcCostume";
+
+service CostumeService {
+  rpc GetCostumes(model.Empty) returns (GetCostumesRes) {}
+  rpc GetCharacterCostumes(GetCharacterCostumesReq) returns (GetCostumesRes) {}
+  rpc EquipCostume(EquipCostumeReq) returns (model.Result) {}
+}
+
+message GetCostumesRes {
+  repeated model.CostumeData costumes = 1;
+}
+
+message GetCharacterCostumesReq {
+  string character_enum_id = 1;
+}
+
+message EquipCostumeReq {
+  int32 id = 1;
+}

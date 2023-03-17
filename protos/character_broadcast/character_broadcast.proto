@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package character_broadcast;
+
+import "protos/model/model.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/yeom-c/protobuf-grpc-go/gen/golang/protos/character_broadcast";
+option csharp_namespace = "GrpcCharacterBroadcast";
+
+service CharacterBroadcastService {
+  rpc GetOnAirCharacterBroadcasts(model.Empty) returns (GetOnAirCharacterBroadcastsRes) {}
+  rpc GetCompletedCharacterBroadcasts(GetCompletedCharacterBroadcastsReq) returns (GetCompletedCharacterBroadcastsRes) {}
+  rpc CompleteCharacterBroadcast(CompleteCharacterBroadcastReq) returns (CompleteCharacterBroadcastRes) {}
+}
+
+message GetOnAirCharacterBroadcastsRes {
+  repeated model.CharacterBroadcastData character_broadcasts = 1;
+  google.protobuf.Timestamp broadcast_reset_at = 2;
+}
+
+message GetCompletedCharacterBroadcastsReq {
+  string character_enum_id = 1;
+}
+
+message GetCompletedCharacterBroadcastsRes {
+  repeated model.CharacterBroadcastData character_broadcasts = 1;
+}
+
+message CompleteCharacterBroadcastReq {
+  int32 id = 1;
+}
+
+message CompleteCharacterBroadcastRes {
+  model.Reward reward = 1;
+}

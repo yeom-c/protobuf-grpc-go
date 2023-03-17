@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package character_collection;
+
+import "protos/model/model.proto";
+
+option go_package = "github.com/yeom-c/protobuf-grpc-go/gen/golang/protos/character_collection";
+option csharp_namespace = "GrpcCharacterCollection";
+
+service CharacterCollectionService {
+  rpc GetCharacterCollections(model.Empty) returns (GetCharacterCollectionsRes) {}
+}
+
+message GetCharacterCollectionsRes {
+  repeated model.CharacterCollectionData character_collections = 1;
+}

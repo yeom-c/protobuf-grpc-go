@@ -1,0 +1,30 @@
+gen.proto:
+	make gen.go
+	make gen.csharp
+
+gen.go.file:
+	@read -p "Enter Proto File Name: " name; \
+		rm -f gen/golang/protos/$$name/*.go && \
+		protoc --go_out=paths=source_relative:gen/golang \
+        --go-grpc_out=paths=source_relative:gen/golang \
+        protos/$$name/$$name.proto
+
+gen.go:
+	rm -rf gen/golang/protos/* && \
+	protoc --go_out=paths=source_relative:gen/golang \
+    --go-grpc_out=paths=source_relative:gen/golang \
+    protos/*/*.proto
+
+gen.csharp.file:
+	@read -p "Enter Proto File Name: " name; \
+		protoc --csharp_out=gen/csharp \
+        --grpc_out=gen/csharp --grpc_opt=no_server --plugin=protoc-gen-grpc=./plugins/grpc_csharp_plugin \
+        protos/*/$$name.proto
+
+gen.csharp:
+	rm -rf gen/csharp/* && \
+	protoc --csharp_out=gen/csharp \
+    --grpc_out=gen/csharp --grpc_opt=no_server --plugin=protoc-gen-grpc=./plugins/grpc_csharp_plugin \
+    protos/*/*.proto
+
+.PHONY: gen.proto gen.go.file gen.go gen.csharp.file gen.csharp

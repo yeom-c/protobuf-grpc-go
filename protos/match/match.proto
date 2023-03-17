@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package match;
+
+import "protos/model/model.proto";
+
+option go_package = "github.com/yeom-c/protobuf-grpc-go/gen/golang/protos/match";
+option csharp_namespace = "GrpcMatch";
+
+service MatchService {
+  rpc ConnectStream(stream StreamReq) returns (stream StreamRes) {}
+  rpc LogConnectStream(model.Empty) returns (model.Result) {}
+}
+
+message StreamReq {
+  string action = 1;
+  string data = 2;
+}
+
+message StreamRes {
+  string battle_server_url = 1;
+  string battle_channel_id = 2;
+  model.AccountUserData match_user = 3;
+  int32 match_user_point = 4;
+  bool room_maker = 5;
+}

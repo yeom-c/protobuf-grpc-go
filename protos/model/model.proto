@@ -1,0 +1,193 @@
+syntax = "proto3";
+
+package model;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/yeom-c/protobuf-grpc-go/gen/golang/protos/model";
+option csharp_namespace = "GrpcModel";
+
+message Empty {}
+
+message Result {
+  int32 result = 1;
+}
+
+message AccountUserData {
+  int32 id = 1;
+  int32 account_id = 2;
+  int32 game_db = 3;
+  string nickname = 4;
+  google.protobuf.Timestamp signed_in_at = 5;
+  google.protobuf.Timestamp created_at = 6;
+}
+
+message AssetData {
+  int32 id = 1;
+  string enum_id = 2;
+  int32 type = 3;
+  int64 balance = 4;
+}
+
+message CharacterData {
+  int32 id = 1;
+  string enum_id = 2;
+  int32 exp = 3;
+  int32 equipment_level = 4;
+  google.protobuf.Timestamp created_at = 5;
+}
+
+message CharacterCollectionData {
+  int32 id = 1;
+  string character_enum_id = 2;
+  int32 affection_exp = 3;
+  int32 count = 4;
+  google.protobuf.Timestamp created_at = 5;
+}
+
+message CharacterBroadcastData {
+  int32 id = 1;
+  string character_enum_id = 2;
+  string timeline_enum_id = 3;
+  int32 type = 4;
+  int32 on_air = 5;
+  int32 complete = 6;
+  google.protobuf.Timestamp broadcasted_at = 7;
+}
+
+message CostumeData {
+  int32 id = 1;
+  string enum_id = 2;
+  string character_enum_id = 3;
+  int32 state = 4;
+  google.protobuf.Timestamp created_at = 5;
+}
+
+message DeckData {
+  int32 id = 1;
+  int32 index = 2;
+  string name = 3;
+  repeated int32 characters = 4;
+}
+
+message FateCardData {
+  int32 id = 1;
+  string enum_id = 2;
+  string character_enum_id = 3;
+  google.protobuf.Timestamp created_at = 4;
+}
+
+message GachaLogData {
+  int64 id = 1;
+  string enum_id = 2;
+  string character_enum_id = 3;
+  google.protobuf.Timestamp created_at = 4;
+}
+
+message ItemData {
+  int32 id = 1;
+  string enum_id = 2;
+  int32 count = 3;
+}
+
+message MailData {
+  int32 id = 1;
+  int32 account_user_id = 2;
+  string sender = 3;
+  int32 type = 4;
+  int32 status = 5;
+  string attachment = 6;
+  string title = 7;
+  string message = 8;
+  google.protobuf.Timestamp expired_at = 9;
+  google.protobuf.Timestamp created_at = 10;
+}
+
+message Ranker {
+  int32 account_user_id = 1;
+  string nickname = 2;
+  int32 match_point = 3;
+  int32 match_win = 4;
+  int32 match_lose = 5;
+  google.protobuf.Timestamp created_at = 6;
+}
+
+message Reward {
+  repeated AssetData assets = 1;
+  repeated CharacterData characters = 2;
+  repeated ItemData items = 4;
+  repeated FateCardData fate_cards = 5;
+}
+
+message SessionData {
+  string session_id = 1;
+  int32 account_id = 2;
+  int32 account_user_id = 3;
+  string uuid = 4;
+  int32 profile_idx = 5;
+  string nickname = 6;
+}
+
+message ShopData {
+  int32 id = 1;
+  int32 type = 2;
+  int32 visible = 3;
+  string name = 4;
+  string desc = 5;
+  google.protobuf.Timestamp start_at = 6;
+  google.protobuf.Timestamp end_at = 7;
+}
+
+message ShopCategoryData {
+  int32 id = 1;
+  int32 shop_id = 2;
+  string name = 3;
+  int32 order = 4;
+}
+
+message ShopGoodsData {
+  int32 id = 1;
+  int32 shop_category_id = 2;
+  int32 type = 3;
+  string enum_id = 4;
+  string info = 5;
+  string name = 6;
+  string desc = 7;
+  int32 cost_type = 8;
+  string cost_enum_id = 9;
+  int32 cost = 10;
+  int32 original_cost = 11;
+  int32 count = 12;
+  int32 visible = 13;
+  google.protobuf.Timestamp start_at = 14;
+  google.protobuf.Timestamp end_at = 15;
+}
+
+message SubValue {
+  int32 id = 1;
+  int32 type = 2;
+  string enum_id = 3;
+  int32 count = 4;
+}
+
+message SubReward {
+  repeated SubValue assets = 1;
+  repeated SubValue characters = 2;
+  repeated SubValue items = 3;
+}
+
+message UseItem {
+  int32 id = 1;
+  int32 count = 2;
+}
+
+message UserData {
+  int32 id = 1;
+  int32 match_point = 2;
+  int32 match_win = 3;
+  int32 match_lose = 4;
+  int32 story_index = 5;
+  string tutorial_info = 6;
+  string shop_info = 7;
+  google.protobuf.Timestamp created_at = 8;
+}

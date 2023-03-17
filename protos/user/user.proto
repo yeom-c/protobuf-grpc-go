@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package user;
+
+import "protos/model/model.proto";
+
+option go_package = "github.com/yeom-c/protobuf-grpc-go/gen/golang/protos/user";
+option csharp_namespace = "GrpcUser";
+
+service UserService {
+  rpc GetUser(model.Empty) returns (GetUserRes) {}
+  rpc SaveTutorial(SaveTutorialReq) returns (SaveTutorialRes) {}
+}
+
+message GetUserRes {
+  model.UserData user = 1;
+}
+
+message SaveTutorialReq {
+  string enum_id = 1;
+}
+
+message SaveTutorialRes {
+  model.Reward reward = 1;
+}

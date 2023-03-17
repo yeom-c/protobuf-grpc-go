@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package deck;
+
+import "protos/model/model.proto";
+import "google/protobuf/wrappers.proto";
+
+option go_package = "github.com/yeom-c/protobuf-grpc-go/gen/golang/protos/deck";
+option csharp_namespace = "GrpcDeck";
+
+service DeckService {
+  rpc GetDecks(model.Empty) returns (GetDecksRes) {}
+  rpc SaveDeck(SaveDeckReq) returns (SaveDeckRes) {}
+}
+
+message GetDecksRes {
+  repeated model.DeckData decks = 1;
+}
+
+message SaveDeckReq {
+  google.protobuf.Int32Value id = 1;
+  int32 index = 2;
+  string name = 3;
+  repeated int32 characters = 4;
+}
+
+message SaveDeckRes {
+  model.DeckData deck = 1;
+}

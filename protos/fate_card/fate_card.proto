@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package fate_card;
+
+import "protos/model/model.proto";
+
+option go_package = "github.com/yeom-c/protobuf-grpc-go/gen/golang/protos/fate_card";
+option csharp_namespace = "GrpcFateCard";
+
+service FateCardService {
+  rpc GetFateCards(model.Empty) returns (GetFateCardsRes) {}
+  rpc EquipFateCard(EquipFateCardReq) returns (model.Result) {}
+  rpc UnquipFateCard(UnequipFateCardReq) returns (model.Result) {}
+}
+
+message GetFateCardsRes {
+  repeated model.FateCardData fate_cards = 1;
+}
+
+message EquipFateCardReq {
+  int32 fate_card_id = 1;
+  int32 character_id = 2;
+}
+
+message UnequipFateCardReq {
+  int32 fate_card_id = 1;
+}

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package cheat;
+
+import "protos/model/model.proto";
+
+option go_package = "github.com/yeom-c/protobuf-grpc-go/gen/golang/protos/cheat";
+option csharp_namespace = "GrpcCheat";
+
+service CheatService {
+  rpc CreateMails(model.Empty) returns (model.Result) {}
+  rpc CreateAsset(CreateAssetReq) returns (model.Result) {}
+}
+
+message CreateAssetReq {
+  string enum_id = 1;
+  int64 amount = 2;
+}

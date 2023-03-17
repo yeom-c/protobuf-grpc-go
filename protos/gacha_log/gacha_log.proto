@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package gacha_log;
+
+import "protos/model/model.proto";
+
+option go_package = "github.com/yeom-c/protobuf-grpc-go/gen/golang/protos/gacha_log";
+option csharp_namespace = "GrpcGachaLog";
+
+service GachaLogService {
+  rpc GetGachaLogCategories(model.Empty) returns (GetGachaLogCategoriesRes) {}
+  rpc GetGachaLogs(GetGachaLogsReq) returns (GetGachaLogsRes) {}
+}
+
+message GetGachaLogCategoriesRes {
+  repeated string gacha_log_categories = 1;
+}
+
+message GetGachaLogsReq {
+  string enum_id = 1;
+  int32 page = 2;
+}
+
+message GetGachaLogsRes {
+  repeated model.GachaLogData gacha_logs = 1;
+  int64 total_page = 2;
+}

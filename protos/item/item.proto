@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package item;
+
+import "protos/model/model.proto";
+
+option go_package = "github.com/yeom-c/protobuf-grpc-go/gen/golang/protos/item";
+option csharp_namespace = "GrpcItem";
+
+service ItemService {
+  rpc GetItems(model.Empty) returns (GetItemsRes) {}
+  rpc UseItem(UseItemReq) returns (model.Result) {}
+}
+
+message GetItemsRes {
+  repeated model.ItemData items = 1;
+}
+
+message UseItemReq {
+  int32 target_id = 1;
+  repeated model.UseItem use_items = 2;
+}

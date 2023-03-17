@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package battle_user;
+
+import "protos/model/model.proto";
+
+option go_package = "github.com/yeom-c/protobuf-grpc-go/gen/golang/protos/battle_user";
+option csharp_namespace = "GrpcBattleUser";
+
+service BattleUserService {
+  rpc GetRankerList(model.Empty) returns (GetRankerListRes) {}
+}
+
+message GetRankerListRes {
+  repeated model.Ranker ranker_list = 1;
+}

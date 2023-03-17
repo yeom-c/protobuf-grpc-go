@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package asset;
+
+import "protos/model/model.proto";
+
+option go_package = "github.com/yeom-c/protobuf-grpc-go/gen/golang/protos/asset";
+option csharp_namespace = "GrpcAsset";
+
+service AssetService {
+  rpc GetAssets(model.Empty) returns (GetAssetsRes) {}
+}
+
+message GetAssetsRes {
+  repeated model.AssetData assets = 1;
+}

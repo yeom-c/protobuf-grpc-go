@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package mail;
+
+import "protos/model/model.proto";
+
+option go_package = "github.com/yeom-c/protobuf-grpc-go/gen/golang/protos/battle_result";
+option csharp_namespace = "GrpcBattleResult";
+
+service BattleResultService {
+  rpc ConfirmBattleResult(ConfirmBattleResultReq) returns (ConfirmBattleResultRes) {}
+}
+
+message ConfirmBattleResultReq {
+  string battle_channel_id = 1;
+  int32 battle_result = 2;
+}
+
+message ConfirmBattleResultRes {
+  int32 match_point = 1;
+  int32 add_point = 2;
+  model.Reward reward = 3;
+}

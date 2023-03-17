@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package mail;
+
+import "protos/model/model.proto";
+
+option go_package = "github.com/yeom-c/protobuf-grpc-go/gen/golang/protos/story";
+option csharp_namespace = "GrpcStory";
+
+service StoryService {
+  rpc ClearStory(ClearStoryReq) returns (ClearStoryRes) {}
+}
+
+message ClearStoryReq {
+  string story_enum_id = 1;
+}
+
+message ClearStoryRes {
+  model.Reward reward = 1;
+  int32 story_index = 2;
+}

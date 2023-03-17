@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package mail;
+
+import "protos/model/model.proto";
+
+option go_package = "github.com/yeom-c/protobuf-grpc-go/gen/golang/protos/mail";
+option csharp_namespace = "GrpcMail";
+
+service MailService {
+  rpc GetMails(model.Empty) returns (GetMailsRes) {}
+  rpc ReadMail(MailReq) returns (model.Result) {}
+  rpc ConfirmMail(MailReq) returns (ConfirmMailRes) {}
+  rpc ConfirmAllMail(model.Empty) returns (ConfirmMailRes) {}
+  rpc DeleteMail(MailReq) returns (model.Result) {}
+  rpc DeleteAllMail(model.Empty) returns (model.Result) {}
+}
+
+message GetMailsRes {
+  repeated model.MailData mails = 1;
+}
+
+message MailReq {
+  int32 id = 1;
+}
+
+message ConfirmMailRes {
+  model.Reward reward = 1;
+}
