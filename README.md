@@ -1,7 +1,7 @@
 ## Protobuf gRPC Go
 
 ### 소개
-> grpc protocol buffers submodule 저장소입니다.
+> grpc protocol buffers submodule 저장소
 - [Go gRPC](https://grpc.io/docs/languages/go/quickstart)
 - [Protocol Buffers](https://protobuf.dev)
 
